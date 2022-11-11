@@ -28,22 +28,23 @@ export function RFXArtNetWSProxyServer(portOrServer, onClient, onPacket) {
         socket.write(`HTTP/1.1 101 Switching Protocols\r\nUpgrade: websocket\r\nConnection: Upgrade\r\nSec-WebSocket-Accept: ${sha1.digest('base64')}\r\n\r\n`);
         
         socket.on('data', (d) => {
-            const length1 = d[1] & 0x7F;
-            var value = 0;
-            value = (value << 8) | d[2];
-            value = (value << 8) | d[3];
-            // when len == 126
-            const mask = Buffer.from([d[4], d[5], d[6], d[7]]);
             const unmasked = [];
-            for (let i = 8; i < 8 + value; i++) {
-                unmasked.push(d[i] ^ mask[i%4]);
+            const length1 = d[1] & 0x7F;
+            if (length1 < 126) {
+                const mask = Buffer.from([d[2], d[3], d[4], d[5]]);
+                for (let i = 6; i < 6 + length1; i++) {
+                    unmasked.push(d[i] ^ mask[(i-2)%4]);
+                }
+            }  else {
+                var value = 0;
+                value = (value << 8) | d[2];
+                value = (value << 8) | d[3];
+                const mask = Buffer.from([d[4], d[5], d[6], d[7]]);
+                for (let i = 8; i < 8 + value; i++) {
+                    unmasked.push(d[i] ^ mask[i%4]);
+                }
             }
             onPacket(new Uint8Array(unmasked));
-            // when len < threshold len < 126
-            // console.log('MASK KEY ', Buffer.from([d[2], d[3], d[4], d[5]]));
-            // console.log('PAYLOAD MASKED ', Buffer.from([d[6], d[7], d[8], d[9], d[10], d[11]]));
-            // console.log('PAYLOAD UNMASKED ', Buffer.from([d[6] ^ d[2], d[7] ^ d[3], d[8] ^ d[4], d[9] ^ d[5], d[10] ^ d[2], d[11] ^ d[3]]));
-            // console.log('NULL ', Buffer.from([d[12], d[13]]));
     
         });
         onClient(socket);
