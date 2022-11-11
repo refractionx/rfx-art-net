@@ -1,0 +1,10 @@
+wasi-sdk-16.0
+node_modules
+obj
+*.iobj
+*.ipdb
+*.pdb
+*.vcxproj
+*.vcxproj.filters
+*.gypi
+*.sln

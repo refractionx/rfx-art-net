@@ -1,0 +1,22 @@
+{
+  "name": "rfx-art-net-node",
+  "version": "1.0.0",
+  "description": "Node.js proxy for RFX Art-Net over WebSockets",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "node-gyp rebuild"
+  },
+  "keywords": [
+    "rfx",
+    "art-net",
+    "dmx",
+    "websocket",
+    "proxy",
+    "refractionx"
+  ],
+  "author": "Samuil Aleksov",
+  "license": "MIT",
+  "gypfile": true
+}

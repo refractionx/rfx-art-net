@@ -1,0 +1,20 @@
+{
+  "name": "rfx-art-net-js",
+  "version": "1.0.0",
+  "description": "JavaScript client for RFX Art-Net over WebSockets",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rfx",
+    "art-net",
+    "dmx",
+    "websocket",
+    "proxy",
+    "refractionx"
+  ],
+  "author": "Samuil Aleksov",
+  "license": "MIT"
+}
