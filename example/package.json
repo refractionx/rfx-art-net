@@ -18,6 +18,10 @@
     "express",
     "webpack"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/refractionx/rfx-art-net.git"
+  },
   "author": "Samuil Aleksov",
   "license": "MIT",
   "dependencies": {
