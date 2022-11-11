@@ -1,6 +1,6 @@
 {
   "name": "@refractionx/rfx-art-net-node",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Node.js proxy for RFX Art-Net over WebSockets",
   "main": "index.js",
   "type": "module",
