@@ -1,6 +1,6 @@
 {
-  "name": "rfx-art-net-js",
-  "version": "1.0.0",
+  "name": "@refractionx/rfx-art-net-js",
+  "version": "1.0.1",
   "description": "JavaScript client for RFX Art-Net over WebSockets",
   "main": "index.js",
   "type": "module",

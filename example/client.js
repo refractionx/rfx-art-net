@@ -1,4 +1,4 @@
-import rfxArtNetLoader from 'rfx-art-net-js';
+import rfxArtNetLoader from '@refractionx/rfx-art-net-js';
 
 let channelsIn;
 let channelsOut = new Uint8Array(Array(512).fill(0));

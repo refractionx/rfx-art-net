@@ -21,10 +21,10 @@
   "author": "Samuil Aleksov",
   "license": "MIT",
   "dependencies": {
+    "@refractionx/rfx-art-net-js": "^1.0.1",
+    "@refractionx/rfx-art-net-node": "^1.0.1",
     "express": "^4.18.2",
     "html-webpack-plugin": "^5.5.0",
-    "rfx-art-net-js": "file:../client",
-    "rfx-art-net-node": "file:../server",
     "webpack": "^5.75.0",
     "webpack-dev-middleware": "^5.3.3"
   }

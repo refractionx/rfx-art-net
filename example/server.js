@@ -2,7 +2,7 @@ import udp from 'dgram';
 import express from 'express';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
-import { RFXArtNetPacket, RFXArtNetWSProxyServer, getWebSocketFrame } from 'rfx-art-net-node';
+import { RFXArtNetPacket, RFXArtNetWSProxyServer, getWebSocketFrame } from '@refractionx/rfx-art-net-node';
 import config from './webpack.config.js';
 const client = udp.createSocket('udp4');
 const app = express();
@@ -21,9 +21,7 @@ app.use(
     })
 );
 
-app.use(express.static('node_modules/rfx-art-net-js/build'));
-
-
+app.use(express.static('node_modules/@refractionx/rfx-art-net-js/build'));
 
 const server = app.listen(port, () => {
     console.log(`RFX Art-Net example app listening on port ${port}`)
