@@ -31,10 +31,25 @@ const server = app.listen(port, () => {
 RFXArtNetWSProxyServer(server, (socket) => {
     const packetWS = new RFXArtNetPacket(3);
     let R = 0;
+    let G = 0;
+    let B = 0;
     setInterval(() => {
         packetWS.channels[0] = R;
+        packetWS.channels[1] = G;
+        packetWS.channels[2] = B;
         socket.write(getWebSocketFrame(packetWS));
-        R++; R%=256;
+        R += Math.floor(Math.random() * 7) - 3;
+        R =  Math.abs(R);
+        R %= 256;
+
+        G += Math.floor(Math.random() * 7) - 3;
+        G =  Math.abs(G);
+        G %= 256;
+
+
+        B += Math.floor(Math.random() * 7) - 3;
+        B =  Math.abs(B);
+        B %= 256;
     }, 10);
 
 }, (packet) => {

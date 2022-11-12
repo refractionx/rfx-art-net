@@ -12,7 +12,13 @@ const rfxArtNetNative = require('./build/Release/rfxArtNet');
 export default rfxArtNetNative;
 
 export function getWebSocketFrame(rfxArtNetPacket) {
-    return Buffer.concat([Buffer.from([0x82, rfxArtNetPacket.buffer.length]), new Uint8Array(rfxArtNetPacket.buffer)])
+    if (rfxArtNetPacket.buffer.length < 126) {
+        return Buffer.concat([Buffer.from([0x82, rfxArtNetPacket.buffer.length]), new Uint8Array(rfxArtNetPacket.buffer)]);
+    } else {
+        const hi = (rfxArtNetPacket.buffer.length >> 8) & 0xff;
+        const lo = (rfxArtNetPacket.buffer.length) & 0xff;
+        return Buffer.concat([Buffer.from([0x82, 0x7E, hi, lo]), new Uint8Array(rfxArtNetPacket.buffer)])
+    }
 };
 
 export function RFXArtNetPacket(size) {
